@@ -19,21 +19,38 @@ namespace Storage2.Controllers
             _context = context;
         }
 
-        public async IEnumerable<ProductViewModel> GetInventoryValue()
+        // GET: InventoryValue
+        public async Task<IActionResult> InventoryValue()
         {
-            int totalValue = 0;
+            //var model = new NewViewModel()
+            //{
+            //    Products = _context.Product.Select(m => new ProductViewModel
+            //    {
+            //        Name = m.Name,
+            //        Price = m.Price,
+            //        Count = m.Count,
+            //        InventoryValue = m.Price * m.Count,
+
+            //    })
+            //};
+
             var valueModel = _context.Product.Select(m => new ProductViewModel
             {
                 Name = m.Name,
                 Price = m.Price,
                 Count = m.Count,
-                //totalValue += m.Price
+                InventoryValue = m.Price * m.Count,
+               
             });
 
-            foreach (var item in valueModel)
-            {
-                totalValue += item.Price;
-            }
+            //model.Products = valueModel;
+
+            //ProductViewModel.Sum = valueModel.Select(v => v.InventoryValue).Sum();
+
+            //foreach (var item in valueModel)
+            //{
+            //    totalValue += item.Price;
+            //}
             
             return View(await valueModel.ToListAsync());
             //List<ProductViewModel> valueModel = new List<ProductViewModel>();

@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace Storage2.Models
 {
+
+    //public class NewViewModel
+    //{
+    //    public IEnumerable<ProductViewModel> Products { get; set; }
+    //    public int TotalValue => Products.Select(p => p.InventoryValue).Sum();
+    //}
+
     public class ProductViewModel
     {
+        //public static int Sum { get; set; }
+
         [Required]
         [StringLength(200)]
         public string Name { get; set; }
@@ -18,5 +27,6 @@ namespace Storage2.Models
         [Required]
         public int Count { get; set; }
         public int InventoryValue { get; set; }
+
     }
 }
