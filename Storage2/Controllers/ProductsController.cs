@@ -57,6 +57,28 @@ namespace Storage2.Controllers
 
         }
 
+        // GET: Category Search
+        public IActionResult BeginSearch()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ReturnFromOneCategory(string category)
+        {
+            //return View(await _context.Product.OrderBy(a => a.Category).ToListAsync());
+            return View(await _context.Product.Where(a => a.Category == category).ToListAsync());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Search(string search)
+        {
+            //return View(await _context.Product.OrderBy(a => a.Category).ToListAsync());
+            return View(await _context.Product.Where(a => a.Category == search).ToListAsync());
+        }
+
         // GET: Products
         public async Task<IActionResult> Index()
         {
