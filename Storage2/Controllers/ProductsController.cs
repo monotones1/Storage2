@@ -19,9 +19,24 @@ namespace Storage2.Controllers
             _context = context;
         }
 
-        public async IEnumerable<ProductViewModel> GoDo()
+        public async IEnumerable<ProductViewModel> GetInventoryValue()
         {
-            return View(await _context.Product.ToListAsync());
+            int totalValue = 0;
+            var valueModel = _context.Product.Select(m => new ProductViewModel
+            {
+                Name = m.Name,
+                Price = m.Price,
+                Count = m.Count,
+                //totalValue += m.Price
+            });
+
+            foreach (var item in valueModel)
+            {
+                totalValue += item.Price;
+            }
+            
+            return View(await valueModel.ToListAsync());
+            //List<ProductViewModel> valueModel = new List<ProductViewModel>();
 
         }
 
