@@ -62,6 +62,11 @@ namespace Storage2.Controllers
         {
             return View();
         }
+        //How do I return dropdown categories and why does it break beginsearch.cshtml?
+        //public async Task<IActionResult> BeginSearch()
+        //{
+        //    return View(await _context.Product.Select(a => a.Category).ToListAsync());
+        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -73,10 +78,9 @@ namespace Storage2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Search(string search)
+        public async Task<IActionResult> Search(string name)
         {
-            //return View(await _context.Product.OrderBy(a => a.Category).ToListAsync());
-            return View(await _context.Product.Where(a => a.Category == search).ToListAsync());
+            return View(await _context.Product.Where(a => a.Name.Contains(name)).ToListAsync());
         }
 
         // GET: Products
